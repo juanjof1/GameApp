@@ -1,20 +1,43 @@
 import {StyleSheet, Text, View} from "react-native";
-import React from "react"; 
+import React, { useEffect, useState } from "react"; 
+import Number from "./Number"
 
-export default Game = ({randonNumbers}) => {
-    // const target = 10 + Math.floor [ 40 +Match.randonm ()] // 10...50
 
-    const numbers = Array.from({length: randonNumbers -2}.map( () => 1 + matchMedia.floor ( 10 * Math.randonm())));
-    const target = numbers.slice(0, randonNumbers -2).reduce((acc, cur) => acc + cur, 0);
+export default Game = ({randonNumbersCount}) => {
 
+    const { randonNumbers, setRandonNumbers} = useState([]);
+    const { target, setTarget} = useState(0);
+    const { selectedNumbers, setSelecttedNumbers} = useState([]);
+
+    useEffect( () => console.log(selectedNumbers, [selectedNumbers]));
+
+    useEffect( () =>{
+        const numbers = Array.from({length: randonNumbersCount}.map( () => 1 + matchMedia.floor ( 10 * Math.randonm())));
+        const target = numbers.slice(0, randonNumbersCount -2).reduce((acc, cur) => acc + cur, 0);
+        setRandonNumbers(numbers);
+        setTarget(target);
+    }, []);
+
+    const isNumberSelected = numberIndex => selectedNumbers. some(number => number === numberIndex);
+    const selectedNumber = number => setSelecttedNumbers([...selectedNumbers, number]);
+    setSelecttedNumbers([...selectedNumbers, numbers]);
     
-    return (<view>
-        <text style={styles.target}>{target}</text>
-        <view style={styles.randonContanier}>
-        {numbers.map((number, index) =>
-        <text key={index} style={styles.random}>{number}</text>
-        )}
-        </view>  
+    
+   return (
+   <view>
+       <text style={styles.target}>{target}</text>
+       <view style={styles.randonContanier}>
+           {randonNumbers.map ( (number, index) =>{
+               <number 
+               key={index} 
+               id={index} 
+               number={number} 
+               isNumberSelected={isNumberSelected} 
+               onSelected={selectNumber}>
+         </number>
+           })
+           }
+       </view>
     </view>
      );
 };
