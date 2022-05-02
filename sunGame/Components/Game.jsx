@@ -47,7 +47,12 @@ export default Game = ({ randomNumbersCount, initialSeconds }) => {
     }
   };
 
-  
+  const Game = (e) => {
+    window.location.reload();
+    return false;
+  }
+
+  <button className="button" onClick={Game}>{Restart}</button>
 
   return (
     <View>
