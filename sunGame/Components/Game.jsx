@@ -18,6 +18,8 @@ export default Game = ({ randomNumbersCount, initialSeconds }) => {
     const numbers = Array.from({ length: randomNumbersCount}).map(() => 1 + Math.floor(10 * Math.random()));
     const target = numbers.slice(0, randomNumbersCount -2).reduce( (acc, cur) => acc + cur, 0 );
 
+    Shuffle(Game)
+
     setRandomNumbers(numbers);
     setTarget(target);
 
@@ -47,12 +49,12 @@ export default Game = ({ randomNumbersCount, initialSeconds }) => {
     }
   };
 
-  const Game = (e) => {
-    window.location.reload();
-    return false;
-  }
+ // const Game = (e) => {
+  //  window.location.reload();
+    //return false;
+  //}
 
-  <button className="button" onClick={Game}>{Restart}</button>
+  //<button className="button" onClick={Game}>{Restart}</button>
 
   return (
     <View>
